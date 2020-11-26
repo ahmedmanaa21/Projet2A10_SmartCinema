@@ -2,6 +2,9 @@
 #include "QSqlDatabase"
 #include <QDebug>
 #include <QSqlError>
+
+//test connection Git
+
 connection::connection()
 {
 
