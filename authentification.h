@@ -9,24 +9,20 @@ class authentification
 {
 public:
     authentification();
-    authentification(int,QString,QString,QString,QString);
+    authentification(int,QString,QString);
     int getid();
-    QString getnometprenom();
-    QString getnumero();
-    QString getadresse();
+    QString getnomutilisateur();
     QString getmdp();
 
     void setid(int id);
-    void setnometprenom(QString nometprenom);
-    void setnumero(QString numero);
-    void setadresse(QString adresse);
+    void setnomutilisateur(QString nometprenom);
     void setmdp(QString mdp);
     bool ajouter();
     QSqlQueryModel* afficher();
     bool supprimer(int);
 private:
     int id;
-    QString nometprenom,numero,adresse,mdp;
+    QString nomutilisateur,mdp;
 };
 
 #endif // AUTHENTIFICATION_H

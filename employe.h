@@ -13,7 +13,7 @@ public:
     int getcin();
     QString getnom();
     QString getprenom();
-    QString getdatedb();
+    QString getdatedn();
     QString getemail();
     QString getsalaire();
     QString getnum();
@@ -27,6 +27,7 @@ public:
     void setnum(QString num);
     bool ajouter();
     QSqlQueryModel* afficher();
+    bool modifier(int,QString,QString,QString,QString,QString,QString);
     bool supprimer(int);
 private:
     int cin;

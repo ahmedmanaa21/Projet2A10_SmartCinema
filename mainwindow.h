@@ -14,7 +14,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
 private slots:
     void on_pushButton_ajouteremploye_clicked();
 
@@ -23,6 +22,10 @@ private slots:
     void on_pushButton_ajoutprofil_clicked();
 
     void on_pushButton_spradmin_clicked();
+
+    void on_pushButton_tricin_clicked();
+
+    void on_pushButton_rechercheremp_clicked();
 
 private:
     Ui::MainWindow *ui;

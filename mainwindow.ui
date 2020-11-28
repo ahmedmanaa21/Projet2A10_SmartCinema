@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>742</width>
-    <height>320</height>
+    <height>364</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>10</x>
       <y>10</y>
       <width>721</width>
-      <height>301</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -36,7 +36,7 @@
         <x>0</x>
         <y>0</y>
         <width>721</width>
-        <height>251</height>
+        <height>331</height>
        </rect>
       </property>
       <property name="currentIndex">
@@ -241,13 +241,13 @@
           </rect>
          </property>
         </widget>
-        <widget class="QDateEdit" name="dateEdit">
+        <widget class="QLineEdit" name="lineEdit_date">
          <property name="geometry">
           <rect>
            <x>130</x>
            <y>140</y>
-           <width>110</width>
-           <height>22</height>
+           <width>113</width>
+           <height>20</height>
           </rect>
          </property>
         </widget>
@@ -482,10 +482,88 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>0</y>
+          <y>40</y>
           <width>701</width>
-          <height>211</height>
+          <height>261</height>
          </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Trier par nom</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>10</y>
+          <width>91</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Trier par prenom</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_tricin">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>10</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Trier par CIN</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_19">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>10</y>
+          <width>161</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Rechercher l'employe par CIN :</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_rechercheremp">
+        <property name="geometry">
+         <rect>
+          <x>610</x>
+          <y>10</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Rechercher</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_emprech">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>10</y>
+          <width>113</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="maxLength">
+         <number>8</number>
         </property>
        </widget>
       </widget>
@@ -613,27 +691,14 @@
           </rect>
          </property>
          <property name="text">
-          <string>Nom et Prenom :</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_10">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>130</y>
-           <width>81</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Adresse email :</string>
+          <string>Nom d'utilisateur :</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_11">
          <property name="geometry">
           <rect>
            <x>50</x>
-           <y>160</y>
+           <y>120</y>
            <width>81</width>
            <height>16</height>
           </rect>
@@ -642,44 +707,11 @@
           <string>Mot de passe :</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_12">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>70</y>
-           <width>111</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Numero de telephone :</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineEdit_tel">
-         <property name="geometry">
-          <rect>
-           <x>170</x>
-           <y>70</y>
-           <width>113</width>
-           <height>20</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineEdit_adresse">
-         <property name="geometry">
-          <rect>
-           <x>170</x>
-           <y>130</y>
-           <width>113</width>
-           <height>20</height>
-          </rect>
-         </property>
-        </widget>
         <widget class="QLineEdit" name="lineEdit_mdp">
          <property name="geometry">
           <rect>
            <x>170</x>
-           <y>160</y>
+           <y>120</y>
            <width>113</width>
            <height>20</height>
           </rect>
@@ -715,7 +747,7 @@
          <property name="geometry">
           <rect>
            <x>50</x>
-           <y>100</y>
+           <y>80</y>
            <width>101</width>
            <height>16</height>
           </rect>
@@ -728,7 +760,7 @@
          <property name="geometry">
           <rect>
            <x>170</x>
-           <y>100</y>
+           <y>80</y>
            <width>113</width>
            <height>20</height>
           </rect>

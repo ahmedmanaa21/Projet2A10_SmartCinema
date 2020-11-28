@@ -21,7 +21,7 @@ Employe::Employe(int cin,QString nom,QString prenom,QString datedn,QString email
 int Employe::getcin(){return cin;}
 QString Employe::getnom(){return nom;}
 QString Employe::getprenom(){return prenom;}
-QString Employe::getdatedb(){return datedn;}
+QString Employe::getdatedn(){return datedn;}
 QString Employe::getemail(){return email;}
 QString Employe::getsalaire(){return salaire;}
 QString Employe::getnum(){return num;}

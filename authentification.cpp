@@ -4,38 +4,30 @@
 #include <QObject>
 authentification::authentification()
 {
-id=0;nometprenom=" ";numero=" ";adresse=" ";mdp=" ";
+id=0;nomutilisateur=" ";mdp=" ";
 }
 
-authentification::authentification(int id,QString nometprenom,QString numero,QString adresse,QString mdp)
+authentification::authentification(int id,QString nomutilisateur,QString mdp)
 {
  this->id=id;
- this->nometprenom=nometprenom;
- this->numero=numero;
- this->adresse=adresse;
+ this->nomutilisateur=nomutilisateur;
  this->mdp=mdp;
 }
 int authentification::getid(){return id;}
-QString authentification::getnometprenom(){return nometprenom;}
-QString authentification::getnumero(){return numero;}
-QString authentification::getadresse(){return adresse;}
+QString authentification::getnomutilisateur(){return nomutilisateur;}
 QString authentification::getmdp(){return mdp;}
 
 void authentification::setid(int id){this->id=id;}
-void authentification::setnometprenom(QString nometprenom){this->nometprenom=nometprenom;}
-void authentification::setnumero(QString numero){this->numero=numero;}
-void authentification::setadresse(QString adresse){this->adresse=adresse;}
+void authentification::setnomutilisateur(QString nomutilisateur){this->nomutilisateur=nomutilisateur;}
 void authentification::setmdp(QString mdp){this->mdp=mdp;}
 bool authentification::ajouter()
 {
     bool test=false;
     QSqlQuery query;
     QString id_string=QString::number(id);
-    query.prepare("INSERT INTO profil (nom_prenom,telephone,adresse,id,mot_de_passe) "
-                  "VALUES (:nom_prenom,:telephone,:adresse,:id,:mot_de_passe)");
-    query.bindValue(":nom_prenom",nometprenom);
-    query.bindValue(":telephone", numero);
-    query.bindValue(":adresse", adresse);
+    query.prepare("INSERT INTO profil (nom_utilisateur,id,mot_de_passe) "
+                  "VALUES (:nom_utilisateur,:id,:mot_de_passe)");
+    query.bindValue(":nom_utilisateur",nomutilisateur);
     query.bindValue(":id", id_string);
     query.bindValue(":mot_de_passe", mdp);
     return query.exec();
@@ -53,9 +45,7 @@ QSqlQueryModel* authentification::afficher()
 {
     QSqlQueryModel* model=new QSqlQueryModel();
     model->setQuery("SELECT* FROM profil");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("nom_prenom"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("telephone"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("adresse"));
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("nom_utilisateur"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("id"));
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("mot_de_passe"));
     return model;
