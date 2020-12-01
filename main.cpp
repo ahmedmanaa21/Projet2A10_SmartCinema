@@ -1,16 +1,20 @@
+#include "gest_emp_auth.h"
 #include "mainwindow.h"
 #include <QApplication>
 #include "connection.h"
 #include <QDebug>
 #include <QMessageBox>
+#include "ui_gest_emp_auth.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     connection c;
     bool test=c.createConnection();
     MainWindow w;
+    gest_emp_auth G;
     if(test)
-    {w.show();
+    {//w.show();
+        G.show();
         QMessageBox::information(nullptr, QObject::tr("database is open"),
                     QObject::tr("connection successful.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);

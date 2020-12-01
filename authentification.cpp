@@ -50,3 +50,12 @@ QSqlQueryModel* authentification::afficher()
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("mot_de_passe"));
     return model;
 }
+bool authentification::modifier(int id,QString nomutilisateur,QString mdp){
+    QSqlQuery query;
+    QString id_string=QString::number(id);
+    query.prepare("update PROFIL SET nom_utilisateur=:nom_utilisateur , mot_de_passe=:mot_de_passe where id=:id");
+    query.bindValue(":nom_utilisateur",nomutilisateur);
+    query.bindValue(":id", id_string);
+    query.bindValue(":mot_de_passe", mdp);
+    return query.exec();
+}

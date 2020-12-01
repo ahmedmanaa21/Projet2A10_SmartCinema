@@ -1,6 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include <QWidget>
 #include "employe.h"
+#include <QMessageBox>
+#include "authentification.h"
+#include <QSqlQueryModel>
+#include <QSqlQuery>
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -15,17 +20,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private slots:
-    void on_pushButton_ajouteremploye_clicked();
 
-    void on_pushButton_supremploye_clicked();
 
-    void on_pushButton_ajoutprofil_clicked();
 
-    void on_pushButton_spradmin_clicked();
+    void on_pushButton_quiter1_clicked();
 
-    void on_pushButton_tricin_clicked();
 
-    void on_pushButton_rechercheremp_clicked();
+    void on_pushButton_connecter_clicked();
+
+    void on_pushButton_inscrire_clicked();
+
+    void on_pushButton_mdpoublie_clicked();
 
 private:
     Ui::MainWindow *ui;

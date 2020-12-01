@@ -13,6 +13,7 @@ SOURCES += \
     authentification.cpp \
     connection.cpp \
     employe.cpp \
+    gest_emp_auth.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -20,9 +21,11 @@ HEADERS += \
     authentification.h \
     connection.h \
     employe.h \
+    gest_emp_auth.h \
     mainwindow.h
 
 FORMS += \
+    gest_emp_auth.ui \
     mainwindow.ui
 
 # Default rules for deployment.

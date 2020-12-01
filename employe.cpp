@@ -71,3 +71,16 @@ QSqlQueryModel* Employe::afficher()
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("datedn"));
     return model;
 }
+bool Employe::modifier(int cin,QString nom,QString prenom,QString datedn,QString email,QString salaire,QString num){
+    QSqlQuery query;
+    QString cin_string=QString::number(cin);
+    query.prepare("update EMPLOYE SET nom=:nom , prenom=:prenom,email=:email,salaire=:salaire, numero=:numero,datedn=:datedn where cin=:cin");
+    query.bindValue(":nom",nom);
+    query.bindValue(":prenom", prenom);
+    query.bindValue(":cin", cin_string);
+    query.bindValue(":email", datedn);
+    query.bindValue(":salaire", email);
+    query.bindValue(":numero", num);
+    query.bindValue(":datedn", salaire);
+    return query.exec();
+}
