@@ -35,6 +35,9 @@
        <height>16</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="text">
       <string>Nom d'utilisateur :</string>
      </property>

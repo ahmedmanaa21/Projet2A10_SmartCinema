@@ -45,6 +45,8 @@ private slots:
 
     void on_pushButton_modifierprofil_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::gest_emp_auth *ui;
     Employe E;

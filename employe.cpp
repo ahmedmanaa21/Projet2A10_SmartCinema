@@ -84,3 +84,21 @@ bool Employe::modifier(int cin,QString nom,QString prenom,QString datedn,QString
     query.bindValue(":datedn", salaire);
     return query.exec();
 }
+bool Employe::rechercher(int cin)
+  {
+      bool test= false;
+      QSqlQuery query;
+     query.prepare("select cin from EMPLOYE where cin=:cin");
+     query.bindValue(":cin",cin);
+
+     if(query.exec()&&query.next())
+     {
+          test=true;
+     }
+     else
+     {
+         qDebug()<<"employe non trouvé";
+     }
+         return test;
+  }
+

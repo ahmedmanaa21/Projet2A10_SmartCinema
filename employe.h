@@ -28,6 +28,7 @@ public:
     bool ajouter();
     QSqlQueryModel* afficher();
     bool modifier(int,QString,QString,QString,QString,QString,QString);
+    bool rechercher(int);
     bool supprimer(int);
 private:
     int cin;

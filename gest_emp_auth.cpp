@@ -146,39 +146,29 @@ void gest_emp_auth::on_pushButton_trisalaire_clicked()
 
 void gest_emp_auth::on_pushButton_rechercheremp_clicked()
 {
+    int cin;
+    cin=ui->lineEdit_emprech->text().toInt();
     QMessageBox msgBox ;
     QSqlQueryModel *model = new QSqlQueryModel();
-        int cin;
-        cin=ui->lineEdit_emprech->text().toInt();
-        model->setQuery("SELECT * FROM EMPLOYE where cin='cin'");
-        model->setHeaderData(0, Qt::Horizontal, QObject::tr("nom"));
-        model->setHeaderData(1, Qt::Horizontal, QObject::tr("prenom"));
-        model->setHeaderData(2, Qt::Horizontal, QObject::tr("cin"));
-        model->setHeaderData(3, Qt::Horizontal, QObject::tr("email"));
-        model->setHeaderData(4, Qt::Horizontal, QObject::tr("salaire"));
-        model->setHeaderData(5, Qt::Horizontal, QObject::tr("numero"));
-        model->setHeaderData(6, Qt::Horizontal, QObject::tr("datedn"));
-        ui->tab_employe->setModel(model);
-        ui->tab_employe->show();
-        msgBox.setText("Employé trouvé.");
-        msgBox.exec();
-        ui->lineEdit_emprech->clear();
-        QSqlQuery qry;
-        qry.prepare("SELECT * FROM EMPLOYE where cin='cin'");
-
-        if(qry.exec())
+        model->setQuery("SELECT * FROM EMPLOYE where cin:=cin");
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("Nom"));
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("Prenom"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("Cin"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("Salaire"));
+        model->setHeaderData(5, Qt::Horizontal, QObject::tr("Numero"));
+        model->setHeaderData(6, Qt::Horizontal, QObject::tr("Date de naissance"));
+        bool test=E.rechercher(cin);
+        if(test)
         {
-            while(qry.next())
-            {
-                ui->lineEdit_nom->setText(qry.value(0).toString());
-                ui->lineEdit_prenom->setText(qry.value(1).toString());
-                ui->lineEdit_cin->setText(qry.value(2).toString());
-                ui->lineEdit_email->setText(qry.value(3).toString());
-                ui->lineEdit_salaire->setText(qry.value(4).toString());
-                ui->lineEdit_numero->setText(qry.value(5).toString());
-                ui->lineEdit_date->setText(qry.value(6).toString());
-            }
+        ui->tab_employe->setModel(model);
+        msgBox.setText("Employé trouvé.");
+        ui->lineEdit_emprech->clear();
         }
+        else {
+        msgBox.setText("Echec au niveau de la recherche d un employe");
+    }
+    msgBox.exec();
 }
 
 void gest_emp_auth::on_pushButton_ajoutprofil_clicked()
@@ -264,5 +254,7 @@ void gest_emp_auth::on_triidprofil_clicked()
              msgBox.exec();
 }
 
-
-
+void gest_emp_auth::on_pushButton_2_clicked()
+{
+    close();
+}
