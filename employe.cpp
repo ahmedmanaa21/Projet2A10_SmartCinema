@@ -2,6 +2,7 @@
 #include <QSqlQuery>
 #include <QtDebug>
 #include <QObject>
+#include <QMessageBox>
 
 Employe::Employe()
 {
@@ -38,15 +39,15 @@ bool Employe::ajouter()
     bool test=false;
     QSqlQuery query;
     QString cin_string=QString::number(cin);
-    query.prepare("INSERT INTO employe (nom,prenom,cin,email,salaire,numero,datedn) "
-                  "VALUES (:nom,:prenom,:cin,:email,:salaire,:numero,:datedn)");
+    query.prepare("INSERT INTO employe (cin,nom,prenom,email,salaire,numero,datedn) "
+                  "VALUES (:cin,:nom,:prenom,:email,:salaire,:numero,:datedn)");
+    query.bindValue(":cin", cin_string);
     query.bindValue(":nom",nom);
     query.bindValue(":prenom", prenom);
-    query.bindValue(":cin", cin_string);
-    query.bindValue(":email", email);
-    query.bindValue(":salaire", salaire);
+    query.bindValue(":email", datedn);
+    query.bindValue(":salaire", email);
     query.bindValue(":numero", num);
-    query.bindValue(":datedn", datedn);
+    query.bindValue(":datedn", salaire);
     return query.exec();
 
     return test;
@@ -62,43 +63,58 @@ QSqlQueryModel* Employe::afficher()
 {
     QSqlQueryModel* model=new QSqlQueryModel();
     model->setQuery("SELECT* FROM employe");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("nom"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("prenom"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("email"));
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("salaire"));
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("numero"));
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("datedn"));
     return model;
 }
+
 bool Employe::modifier(int cin,QString nom,QString prenom,QString datedn,QString email,QString salaire,QString num){
     QSqlQuery query;
     QString cin_string=QString::number(cin);
     query.prepare("update EMPLOYE SET nom=:nom , prenom=:prenom,email=:email,salaire=:salaire, numero=:numero,datedn=:datedn where cin=:cin");
+    query.bindValue(":cin", cin_string);
     query.bindValue(":nom",nom);
     query.bindValue(":prenom", prenom);
-    query.bindValue(":cin", cin_string);
     query.bindValue(":email", datedn);
     query.bindValue(":salaire", email);
     query.bindValue(":numero", num);
     query.bindValue(":datedn", salaire);
     return query.exec();
 }
-bool Employe::rechercher(int cin)
-  {
-      bool test= false;
-      QSqlQuery query;
-     query.prepare("select cin from EMPLOYE where cin=:cin");
-     query.bindValue(":cin",cin);
-
-     if(query.exec()&&query.next())
-     {
-          test=true;
-     }
-     else
-     {
-         qDebug()<<"employe non trouvé";
-     }
-         return test;
-  }
-
+bool Employe::rechercher(int cin,QString nom,QString salaire)
+{
+    QMessageBox msgBox;
+    QMessageBox msgBox1;
+    QSqlQuery query;
+    bool retour=0;
+    int count=0;
+    query.prepare("SELECT * FROM EMPLOYE WHERE cin= ? or nom= ? or salaire= ?");
+    query.addBindValue(cin);
+    query.addBindValue(nom);
+    query.addBindValue(salaire);
+    if(query.exec() )
+        {
+while (query.next())
+   {
+   count ++;
+    }
+if(count==1)
+   {
+    msgBox.setText("employe existe");
+    msgBox.exec();
+    retour=1;
+   }
+else if (count<1)
+{
+    msgBox1.setText("employe n'existe pas");
+        msgBox1.exec();
+        retour=0;
+}
+        }
+    return retour;
+}

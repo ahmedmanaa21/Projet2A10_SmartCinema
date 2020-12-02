@@ -27,8 +27,9 @@ public:
     void setnum(QString num);
     bool ajouter();
     QSqlQueryModel* afficher();
+    QSqlQueryModel* afficherrech();
     bool modifier(int,QString,QString,QString,QString,QString,QString);
-    bool rechercher(int);
+    bool rechercher(int,QString,QString);
     bool supprimer(int);
 private:
     int cin;

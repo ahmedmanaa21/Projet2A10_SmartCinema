@@ -39,7 +39,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -482,7 +482,7 @@
         <rect>
          <x>10</x>
          <y>40</y>
-         <width>701</width>
+         <width>591</width>
          <height>261</height>
         </rect>
        </property>
@@ -526,19 +526,6 @@
         <string>Trier par CIN</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_19">
-       <property name="geometry">
-        <rect>
-         <x>340</x>
-         <y>10</y>
-         <width>161</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Rechercher l'employe par CIN :</string>
-       </property>
-      </widget>
       <widget class="QPushButton" name="pushButton_rechercheremp">
        <property name="geometry">
         <rect>
@@ -562,7 +549,58 @@
         </rect>
        </property>
        <property name="maxLength">
-        <number>8</number>
+        <number>20</number>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox">
+       <property name="geometry">
+        <rect>
+         <x>358</x>
+         <y>10</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>salaire</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>cin</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>nom</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QPushButton" name="pushButton_imprimer">
+       <property name="geometry">
+        <rect>
+         <x>610</x>
+         <y>60</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Imprimer</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_pdf">
+       <property name="geometry">
+        <rect>
+         <x>610</x>
+         <y>90</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PDF</string>
        </property>
       </widget>
      </widget>
@@ -652,7 +690,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_7">
       <attribute name="title">
@@ -946,19 +984,6 @@
         <string>Trier par id</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_24">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>10</y>
-         <width>161</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Rechercher l'employe par CIN :</string>
-       </property>
-      </widget>
       <widget class="QLineEdit" name="lineEdit_profilrech">
        <property name="geometry">
         <rect>
@@ -969,7 +994,7 @@
         </rect>
        </property>
        <property name="maxLength">
-        <number>8</number>
+        <number>20</number>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_rechprofil">
@@ -997,6 +1022,52 @@
        <property name="text">
         <string>Quitter</string>
        </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_imprimerprofil">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>130</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Imprimer</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_pdfprofil">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>160</y>
+         <width>75</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PDF</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBox_2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>10</y>
+         <width>121</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>id</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>nometprenom</string>
+        </property>
+       </item>
       </widget>
      </widget>
      <widget class="QWidget" name="tab_10">

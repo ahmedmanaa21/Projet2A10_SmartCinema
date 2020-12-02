@@ -47,6 +47,16 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_imprimer_clicked();
+
+    void on_pushButton_pdf_clicked();
+
+    void on_pushButton_imprimerprofil_clicked();
+
+    void on_pushButton_pdfprofil_clicked();
+
+    void on_pushButton_rechprofil_clicked();
+
 private:
     Ui::gest_emp_auth *ui;
     Employe E;
