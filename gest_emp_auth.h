@@ -57,6 +57,10 @@ private slots:
 
     void on_pushButton_rechprofil_clicked();
 
+    void on_recherchercin_clicked();
+
+    void on_rechercherid_clicked();
+
 private:
     Ui::gest_emp_auth *ui;
     Employe E;

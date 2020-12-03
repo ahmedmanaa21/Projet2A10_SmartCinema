@@ -52,7 +52,7 @@ QSqlQueryModel* authentification::afficher()
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("mot_de_passe"));
     return model;
 }
-bool authentification::modifier(int id,QString nomutilisateur,QString mdp){
+bool authentification::modifier(int id){
     QSqlQuery query;
     QString id_string=QString::number(id);
     query.prepare("update PROFIL SET nom_utilisateur=:nom_utilisateur , mot_de_passe=:mot_de_passe where id=:id");
@@ -61,34 +61,57 @@ bool authentification::modifier(int id,QString nomutilisateur,QString mdp){
     query.bindValue(":mot_de_passe", mdp);
     return query.exec();
 }
-bool authentification::rechercher(int id,QString nometprenom)
+
+bool authentification::recherche_id(int id)
 {
     QMessageBox msgBox;
-    QMessageBox msgBox1;
     QSqlQuery query;
-    bool retour=0;
-    int count=0;
-    query.prepare("SELECT * FROM PROFIL WHERE id= ? or nom_utilisateur= ? ");
-    query.addBindValue(id);
-    query.addBindValue(nometprenom);
-    if(query.exec() )
-        {
-while (query.next())
-   {
-   count ++;
+
+    query.prepare("SELECT * FROM PROFIL WHERE ID= :id");
+    query.bindValue(":id", id);
+    if (query.exec() && query.next())
+    {
+            return true;
     }
-if(count==1)
-   {
-    msgBox.setText("profil existe");
-    msgBox.exec();
-    retour=1;
-   }
-else if (count<1)
+    else
+    {
+
+        msgBox.setText("Profil n existe pas");
+        msgBox.exec();
+        return false;
+    }
+}
+
+bool authentification::recherche_nom(QString nomutilisateur)
 {
-    msgBox1.setText("profil n'existe pas");
-        msgBox1.exec();
-        retour=0;
+    QMessageBox msgBox;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM PROFIL WHERE nom_utilisateur= :nom_utilisateur");
+    query.bindValue(":nom_utilisateur", nomutilisateur);
+    if (query.exec() && query.next())
+    {
+            return true;
+    }
+    else
+    {
+        msgBox.setText("Profil n existe pas");
+        msgBox.exec();
+        return false;
+    }
 }
-        }
-    return retour;
+
+QSqlQueryModel* authentification::afficher_id(int id)
+{
+    QSqlQueryModel* model= new QSqlQueryModel();
+    QString id_string=QString::number(id);
+    model->setQuery("SELECT * FROM PROFIL WHERE id='"+id_string+"'");
+    return model;
 }
+
+QSqlQueryModel* authentification::afficher_nom(QString nomutilisateur)
+{
+    QSqlQueryModel* model= new QSqlQueryModel();
+    model->setQuery("SELECT * FROM PROFIL WHERE nom_utilisateur='"+nomutilisateur+"'");
+    return model;
+}
+

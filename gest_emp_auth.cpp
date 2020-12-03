@@ -48,6 +48,7 @@ gest_emp_auth::~gest_emp_auth()
 
 void gest_emp_auth::on_pushButton_ajouteremploye_clicked()
 {
+    QMessageBox msgBox;
     int cin=ui->lineEdit_cin->text().toInt();
     QString nom=ui->lineEdit_nom->text();
     QString prenom=ui->lineEdit_prenom->text();
@@ -59,10 +60,14 @@ void gest_emp_auth::on_pushButton_ajouteremploye_clicked()
     bool test=E.ajouter();
     if (test){
         ui->tab_employe->setModel(E.afficher());
-        QMessageBox::information(nullptr, QObject::tr("Ajouter un employe"),
-                    QObject::tr("employe ajouté.\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
-    }
+            msgBox.setText("Employe ajoute");
+            msgBox.exec();
+           }
+        else
+        {
+            msgBox.setText("Cin existe deja");
+            msgBox.exec();
+        }
 }
 
 void gest_emp_auth::on_pushButton_supremploye_clicked()
@@ -80,33 +85,25 @@ void gest_emp_auth::on_pushButton_supremploye_clicked()
 
 void gest_emp_auth::on_pushButton_modifieremploye_clicked()
 {
-    int cin=ui->lineEdit_cinm->text().toInt();
-    QString nom=ui->lineEdit_mnom->text();
-    QString prenom=ui->lineEdit_mprenom->text();
-    QString email=ui->lineEdit_memail->text();
-    QString salaire=ui->lineEdit_msalaire->text();
-    QString datedn=ui->lineEdit_mdate->text();
-    QString num=ui->lineEdit_mnumero->text();
-    QMessageBox msg;
-    bool test=E.modifier(cin,nom,prenom,email,salaire,datedn,num);
+        Employe E;
+        QMessageBox msg;
+        E.setcin(ui->lineEdit_cinm->text().toInt());
+        E.setnom(ui->lineEdit_mnom->text());
+        E.setprenom(ui->lineEdit_mprenom->text());
+        E.setemail(ui->lineEdit_memail->text());
+        E.setdatedn(ui->lineEdit_mdate->text());
+        E.setnum(ui->lineEdit_mnumero->text());
 
-    if(test)
-    {
-        ui->lineEdit_cinm->clear();
-        ui->lineEdit_mnom->clear();
-        ui->lineEdit_mprenom->clear();
-        ui->lineEdit_memail->clear();
-        ui->lineEdit_msalaire->clear();
-        ui->lineEdit_mdate->clear();
-        ui->lineEdit_mnumero->clear();
-        ui->tab_employe->setModel(E.afficher());
-        msg.setText("modifiction avec succes");
-    }
+        bool test=E.modifier(E.getcin());
+        if(test)
+        {
+            msg.setText("modification avec succès");
+            ui->tab_employe->setModel(E.afficher());
+        }
+        else
+            msg.setText("echec de modification");
 
-        else {
-        msg.setText("Echec au niveau de la modification d un employe");
-    }
-    msg.exec();
+        msg.exec();
 }
 
 
@@ -170,36 +167,37 @@ void gest_emp_auth::on_pushButton_trisalaire_clicked()
 
 void gest_emp_auth::on_pushButton_rechercheremp_clicked()
 {
-           QMessageBox msgBox;
-           QMessageBox msgBox1;
-           bool test;
-           Employe P;
-           int cin=0;
-           QString nom=ui->lineEdit_emprech->text();
-           QString salaire=ui->lineEdit_emprech->text();
-           QString choix=ui->comboBox->currentText();
-           if(choix=="salaire")
-       {
-        test=P.rechercher(cin,nom,salaire);
-       }
-       if(choix=="cin")
-       {
-       cin= salaire.toInt();
-       test=P.rechercher(cin,nom,salaire);
-       }
-       if(choix=="nom")
-       {
-       test=P.rechercher(cin,nom,salaire);
-       }
+    Employe E;
+        if (ui->comboBox->currentText()=="cin")
+        {
+            int cin=ui->lineEdit_emprech->text().toInt();
+            if (E.recherche_cin(cin))
+            {
+                ui->tab_employe->setModel(E.afficher_cin(cin));
+            }
+        }
+        else if(ui->comboBox->currentText()=="nom")
+        {
+            QString nom=ui->lineEdit_emprech->text();
+            if (E.recherche_nom(nom))
+            {
+                ui->tab_employe->setModel(E.afficher_nom(nom));
+            }
 
-    if(test)
-    {
-    ui->tab_employe->setModel(P.afficher());
-    }
+        }
+        else
+        {
+            QString salaire=ui->lineEdit_emprech->text();
+            if(E.recherche_salaire(salaire))
+            {
+                ui->tab_employe->setModel(E.afficher_salaire(salaire));
+            }
+        }
 }
 
 void gest_emp_auth::on_pushButton_ajoutprofil_clicked()
 {
+    QMessageBox msgBox;
     int id=ui->lineEdit_id->text().toInt();
     QString nomutilisateur=ui->lineEditnometprenom->text();
     QString mdp=ui->lineEdit_mdp->text();
@@ -207,9 +205,13 @@ void gest_emp_auth::on_pushButton_ajoutprofil_clicked()
     bool test=A.ajouter();
     if (test){
         ui->tableView_profil->setModel(A.afficher());
-        QMessageBox::information(nullptr, QObject::tr("Ajouter un admin"),
-                    QObject::tr("admin ajouté.\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
+            msgBox.setText("Profil ajoute");
+            msgBox.exec();
+           }
+        else
+        {
+            msgBox.setText("ID existe deja");
+            msgBox.exec();
 
     }
 }
@@ -230,24 +232,20 @@ void gest_emp_auth::on_pushButton_spradmin_clicked()
 void gest_emp_auth::on_pushButton_modifierprofil_clicked()
 {
     authentification A;
-    int id=ui->lineEdit_mid->text().toInt();
-    QString nomutilisateur=ui->mnom->text();
-    QString mdp=ui->lineEdit_mmdp->text();
     QMessageBox msg;
-    bool test=A.modifier(id,nomutilisateur,mdp);
+    A.setid(ui->lineEdit_mid->text().toInt());
+    A.setnomutilisateur(ui->mnom->text());
+    A.setmdp(ui->lineEdit_mmdp->text());
 
+    bool test=A.modifier(A.getid());
     if(test)
     {
-        ui->lineEdit_mid->clear();
-        ui->mnom->clear();
-        ui->lineEdit_mmdp->clear();
+        msg.setText("modification avec succès");
         ui->tableView_profil->setModel(A.afficher());
-        msg.setText("modifiction avec succes");
     }
+    else
+        msg.setText("echec de modification");
 
-        else {
-        msg.setText("Echec au niveau de la modification d un profil");
-    }
     msg.exec();
 }
 
@@ -426,24 +424,62 @@ void gest_emp_auth::on_pushButton_pdfprofil_clicked()
 
 void gest_emp_auth::on_pushButton_rechprofil_clicked()
 {
-    QMessageBox msgBox;
-    QMessageBox msgBox1;
-    bool test;
+            authentification A;
+            if (ui->comboBox_2->currentText()=="id")
+            {
+                int id=ui->lineEdit_profilrech->text().toInt();
+                if (A.recherche_id(id))
+                {
+                    ui->tableView_profil->setModel(A.afficher_id(id));
+                }
+            }
+            else if(ui->comboBox_2->currentText()=="nomutilisateur")
+            {
+                QString nomutilisateur=ui->lineEdit_profilrech->text();
+                if (A.recherche_nom(nomutilisateur))
+                {
+                    ui->tableView_profil->setModel(A.afficher_nom(nomutilisateur));
+                }
+            }
+}
+
+void gest_emp_auth::on_recherchercin_clicked()
+{
+        Employe E;
+        QSqlQuery query;
+        int cin=ui->lineEdit_cinm->text().toInt();
+        QString cin_string=QString::number(cin);
+       if(E.recherche_cin(cin))
+       {
+           query.prepare("SELECT * FROM EMPLOYE WHERE cin like :cin");
+           query.bindValue(0,cin_string);
+           query.exec();
+           while(query.next()){
+           ui->lineEdit_mnom->setText(query.value(1).toString());
+           ui->lineEdit_mprenom->setText(query.value(2).toString());
+           ui->lineEdit_memail->setText(query.value(3).toString());
+           ui->lineEdit_msalaire->setText(query.value(4).toString());
+           ui->lineEdit_mnumero->setText(query.value(5).toString());
+           ui->lineEdit_mdate->setText(query.value(6).toString());
+
+        }
+       }
+}
+
+void gest_emp_auth::on_rechercherid_clicked()
+{
     authentification A;
-    int id=0;
-    QString nometprenom=ui->lineEdit_profilrech->text();
-    QString choix=ui->comboBox_2->currentText();
-if(choix=="id")
-{
-    id= nometprenom.toInt();
-    test=A.rechercher(id,nometprenom);
-}
-if(choix=="nometprenom")
-{
-   test=A.rechercher(id,nometprenom);
-}
-if(test)
-{
-ui->tableView_profil->setModel(A.afficher());
-}
+    QSqlQuery query;
+    int id=ui->lineEdit_mid->text().toInt();
+    QString id_string=QString::number(id);
+   if(A.recherche_id(id))
+   {
+       query.prepare("SELECT * FROM PROFIL WHERE id like :id");
+       query.bindValue(0,id_string);
+       query.exec();
+       while(query.next()){
+       ui->mnom->setText(query.value(1).toString());
+       ui->lineEdit_mmdp->setText(query.value(2).toString());
+    }
+   }
 }

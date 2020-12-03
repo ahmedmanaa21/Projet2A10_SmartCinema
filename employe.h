@@ -27,9 +27,13 @@ public:
     void setnum(QString num);
     bool ajouter();
     QSqlQueryModel* afficher();
-    QSqlQueryModel* afficherrech();
-    bool modifier(int,QString,QString,QString,QString,QString,QString);
-    bool rechercher(int,QString,QString);
+    QSqlQueryModel* afficher_cin(int);
+    QSqlQueryModel* afficher_nom(QString);
+    QSqlQueryModel* afficher_salaire(QString);
+    bool modifier(int);
+    bool recherche_nom(QString);
+    bool recherche_salaire(QString);
+    bool recherche_cin(int);
     bool supprimer(int);
 private:
     int cin;

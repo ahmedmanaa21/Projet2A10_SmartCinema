@@ -19,8 +19,11 @@ public:
     void setmdp(QString mdp);
     bool ajouter();
     QSqlQueryModel* afficher();
-    bool modifier(int,QString,QString);
-    bool rechercher(int,QString);
+    QSqlQueryModel* afficher_id(int);
+    QSqlQueryModel* afficher_nom(QString);
+    bool modifier(int);
+    bool recherche_id(int);
+    bool recherche_nom(QString);
     bool supprimer(int);
 private:
     int id;

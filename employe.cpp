@@ -73,48 +73,112 @@ QSqlQueryModel* Employe::afficher()
     return model;
 }
 
-bool Employe::modifier(int cin,QString nom,QString prenom,QString datedn,QString email,QString salaire,QString num){
-    QSqlQuery query;
-    QString cin_string=QString::number(cin);
-    query.prepare("update EMPLOYE SET nom=:nom , prenom=:prenom,email=:email,salaire=:salaire, numero=:numero,datedn=:datedn where cin=:cin");
-    query.bindValue(":cin", cin_string);
-    query.bindValue(":nom",nom);
-    query.bindValue(":prenom", prenom);
-    query.bindValue(":email", datedn);
-    query.bindValue(":salaire", email);
-    query.bindValue(":numero", num);
-    query.bindValue(":datedn", salaire);
-    return query.exec();
-}
-bool Employe::rechercher(int cin,QString nom,QString salaire)
+bool Employe::recherche_nom(QString nom)
 {
     QMessageBox msgBox;
-    QMessageBox msgBox1;
     QSqlQuery query;
-    bool retour=0;
-    int count=0;
-    query.prepare("SELECT * FROM EMPLOYE WHERE cin= ? or nom= ? or salaire= ?");
-    query.addBindValue(cin);
-    query.addBindValue(nom);
-    query.addBindValue(salaire);
-    if(query.exec() )
-        {
-while (query.next())
-   {
-   count ++;
+
+    query.prepare("SELECT * FROM EMPLOYE WHERE NOM= :nom");
+    query.bindValue(":nom", nom);
+    if (query.exec() && query.next())
+    {
+            return true;
     }
-if(count==1)
-   {
-    msgBox.setText("employe existe");
-    msgBox.exec();
-    retour=1;
-   }
-else if (count<1)
-{
-    msgBox1.setText("employe n'existe pas");
-        msgBox1.exec();
-        retour=0;
+    else
+    {
+
+        msgBox.setText("Employe n existe pas");
+        msgBox.exec();
+        return false;
+    }
 }
-        }
-    return retour;
+
+
+
+bool Employe::recherche_salaire(QString salaire)
+{
+    QMessageBox msgBox;
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM EMPLOYE WHERE SALAIRE= :salaire");
+    query.bindValue(":salaire", salaire);
+    if (query.exec() && query.next())
+    {
+            return true;
+    }
+    else
+    {
+        msgBox.setText("Employe n existe pas");
+        msgBox.exec();
+        return false;
+    }
+}
+
+
+
+bool Employe::recherche_cin(int cin)
+{
+
+    QMessageBox msgBox;
+    QSqlQuery query;
+     QString cin_string=QString::number(cin);
+    query.prepare("SELECT * FROM EMPLOYE WHERE CIN= :cin");
+    query.bindValue(":cin", cin_string);
+    if (query.exec() && query.next())
+    {
+            return true;
+    }
+    else
+    {
+        msgBox.setText("Employe n existe pas");
+        msgBox.exec();
+        return false;
+    }
+}
+QSqlQueryModel* Employe::afficher_cin(int cin)
+{
+    QSqlQueryModel* model= new QSqlQueryModel();
+    QString CIN_string=QString::number(cin);
+
+          model->setQuery("SELECT * FROM EMPLOYE WHERE CIN='"+CIN_string+"'");
+
+    return model;
+}
+
+QSqlQueryModel* Employe::afficher_nom(QString nom)
+{
+    QSqlQueryModel* model= new QSqlQueryModel();
+
+          model->setQuery("SELECT * FROM EMPLOYE WHERE NOM='"+nom+"'");
+
+    return model;
+}
+
+QSqlQueryModel* Employe::afficher_salaire(QString salaire)
+{
+    QSqlQueryModel* model= new QSqlQueryModel();
+
+          model->setQuery("SELECT * FROM EMPLOYE WHERE SALAIRE='"+salaire+"'");
+
+    return model;
+}
+
+bool Employe::modifier(int cin)
+{
+    QSqlQuery query;
+    QString cin_string=QString::number(cin);
+    if (recherche_cin(cin))
+    {
+
+          query.prepare("UPDATE EMPLOYE SET nom=:nom, prenom=:prenom, email=:email, salaire=:salaire, numero=:numero, datedn=:datedn WHERE CIN=:cin");
+          query.bindValue(":cin", cin_string);
+          query.bindValue(":nom",nom);
+          query.bindValue(":prenom", prenom);
+          query.bindValue(":email", datedn);
+          query.bindValue(":salaire", email);
+          query.bindValue(":numero", num);
+          query.bindValue(":datedn", salaire);
+
+    }
+          return query.exec();
 }
