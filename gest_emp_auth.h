@@ -61,6 +61,8 @@ private slots:
 
     void on_rechercherid_clicked();
 
+    void on_pushButton_quitter_clicked();
+
 private:
     Ui::gest_emp_auth *ui;
     Employe E;

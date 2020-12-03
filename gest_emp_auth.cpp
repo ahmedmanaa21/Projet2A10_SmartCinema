@@ -106,6 +106,28 @@ void gest_emp_auth::on_pushButton_modifieremploye_clicked()
         msg.exec();
 }
 
+void gest_emp_auth::on_recherchercin_clicked()
+{
+        Employe E;
+        QSqlQuery query;
+        int cin=ui->lineEdit_cinm->text().toInt();
+        QString cin_string=QString::number(cin);
+       if(E.recherche_cin(cin))
+       {
+           query.prepare("SELECT * FROM EMPLOYE WHERE cin like :cin");
+           query.bindValue(0,cin_string);
+           query.exec();
+           while(query.next()){
+           ui->lineEdit_mnom->setText(query.value(1).toString());
+           ui->lineEdit_mprenom->setText(query.value(2).toString());
+           ui->lineEdit_memail->setText(query.value(3).toString());
+           ui->lineEdit_msalaire->setText(query.value(4).toString());
+           ui->lineEdit_mnumero->setText(query.value(5).toString());
+           ui->lineEdit_mdate->setText(query.value(6).toString());
+
+        }
+       }
+}
 
 void gest_emp_auth::on_pushButton_tricin_clicked()
 {
@@ -249,6 +271,24 @@ void gest_emp_auth::on_pushButton_modifierprofil_clicked()
     msg.exec();
 }
 
+void gest_emp_auth::on_rechercherid_clicked()
+{
+    authentification A;
+    QSqlQuery query;
+    int id=ui->lineEdit_mid->text().toInt();
+    QString id_string=QString::number(id);
+   if(A.recherche_id(id))
+   {
+       query.prepare("SELECT * FROM PROFIL WHERE id like :id");
+       query.bindValue(0,id_string);
+       query.exec();
+       while(query.next()){
+       ui->mnom->setText(query.value(1).toString());
+       ui->lineEdit_mmdp->setText(query.value(2).toString());
+    }
+   }
+}
+
 void gest_emp_auth::on_trinomprofil_clicked()
 {
     QMessageBox msgBox ;
@@ -277,11 +317,6 @@ void gest_emp_auth::on_triidprofil_clicked()
              ui->tableView_profil->show();
              msgBox.setText("Tri avec succès.");
              msgBox.exec();
-}
-
-void gest_emp_auth::on_pushButton_2_clicked()
-{
-    close();
 }
 
 void gest_emp_auth::on_pushButton_imprimer_clicked()
@@ -443,43 +478,12 @@ void gest_emp_auth::on_pushButton_rechprofil_clicked()
             }
 }
 
-void gest_emp_auth::on_recherchercin_clicked()
+void gest_emp_auth::on_pushButton_2_clicked()
 {
-        Employe E;
-        QSqlQuery query;
-        int cin=ui->lineEdit_cinm->text().toInt();
-        QString cin_string=QString::number(cin);
-       if(E.recherche_cin(cin))
-       {
-           query.prepare("SELECT * FROM EMPLOYE WHERE cin like :cin");
-           query.bindValue(0,cin_string);
-           query.exec();
-           while(query.next()){
-           ui->lineEdit_mnom->setText(query.value(1).toString());
-           ui->lineEdit_mprenom->setText(query.value(2).toString());
-           ui->lineEdit_memail->setText(query.value(3).toString());
-           ui->lineEdit_msalaire->setText(query.value(4).toString());
-           ui->lineEdit_mnumero->setText(query.value(5).toString());
-           ui->lineEdit_mdate->setText(query.value(6).toString());
-
-        }
-       }
+    close();
 }
 
-void gest_emp_auth::on_rechercherid_clicked()
+void gest_emp_auth::on_pushButton_quitter_clicked()
 {
-    authentification A;
-    QSqlQuery query;
-    int id=ui->lineEdit_mid->text().toInt();
-    QString id_string=QString::number(id);
-   if(A.recherche_id(id))
-   {
-       query.prepare("SELECT * FROM PROFIL WHERE id like :id");
-       query.bindValue(0,id_string);
-       query.exec();
-       while(query.next()){
-       ui->mnom->setText(query.value(1).toString());
-       ui->lineEdit_mmdp->setText(query.value(2).toString());
-    }
-   }
+    close();
 }
