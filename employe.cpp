@@ -174,10 +174,10 @@ bool Employe::modifier(int cin)
           query.bindValue(":cin", cin_string);
           query.bindValue(":nom",nom);
           query.bindValue(":prenom", prenom);
-          query.bindValue(":email", datedn);
-          query.bindValue(":salaire", email);
+          query.bindValue(":email", email);
+          query.bindValue(":salaire", salaire);
           query.bindValue(":numero", num);
-          query.bindValue(":datedn", salaire);
+          query.bindValue(":datedn", datedn);
 
     }
           return query.exec();

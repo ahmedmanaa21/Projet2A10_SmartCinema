@@ -91,6 +91,7 @@ void gest_emp_auth::on_pushButton_modifieremploye_clicked()
         E.setnom(ui->lineEdit_mnom->text());
         E.setprenom(ui->lineEdit_mprenom->text());
         E.setemail(ui->lineEdit_memail->text());
+        E.setsalaire(ui->lineEdit_msalaire->text());
         E.setdatedn(ui->lineEdit_mdate->text());
         E.setnum(ui->lineEdit_mnumero->text());
 
@@ -405,7 +406,7 @@ void gest_emp_auth::on_pushButton_imprimerprofil_clicked()
 
 void gest_emp_auth::on_pushButton_pdfprofil_clicked()
 {
-    QString strStream;
+                     QString strStream;
                      QTextStream out(&strStream);
 
                      const int rowCount = ui->tableView_profil->model()->rowCount();
