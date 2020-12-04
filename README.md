@@ -1,1 +1,1 @@
-# Smart_Sport_Club_A10
+# Smart_Cinema_A10
