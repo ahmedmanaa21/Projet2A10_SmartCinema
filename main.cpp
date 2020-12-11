@@ -13,8 +13,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     gest_emp_auth G;
     if(test)
-    {//w.show();
-        G.show();
+    {w.show();
+    //G.show();
         QMessageBox::information(nullptr, QObject::tr("database is open"),
                     QObject::tr("connection successful.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);

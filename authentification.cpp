@@ -38,8 +38,12 @@ bool authentification::ajouter()
 bool authentification::supprimer(int id){
 
     QSqlQuery query;
+    authentification A;
+    bool test=A.recherche_id(id);
+    if(test){
     query.prepare(" Delete from profil where id=:id");
     query.bindValue(":id", id);
+    }
     return query.exec();
 }
 

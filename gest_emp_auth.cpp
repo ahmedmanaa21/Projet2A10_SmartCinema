@@ -29,16 +29,27 @@
 #include <QPrintDialog>
 #include<QtSql/QSqlQuery>
 #include<QVariant>
+#include <QValidator>
+#include <QIntValidator>
 
 gest_emp_auth::gest_emp_auth(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::gest_emp_auth)
 {
     ui->setupUi(this);
+    setWindowTitle("VineWood");
+    setWindowIcon(QIcon(":/logoApp.png"));
     ui->tab_employe->setModel(E.afficher());
     authentification A;
     ui->tableView_profil->setModel(A.afficher());
-
+    ui->lineEdit_cin->setValidator(new QIntValidator(0,99999999, this));
+    ui->lineEdit_cinm->setValidator(new QIntValidator(0,99999999, this));
+    ui->lineEdit_supcin->setValidator(new QIntValidator(0,99999999, this));
+    ui->lineEdit_numero->setValidator(new QIntValidator(0,99999999, this));
+    ui->lineEdit_salaire->setValidator(new QIntValidator(0,99999999, this));
+    ui->lineEdit_id->setValidator(new QIntValidator(0,99999999, this));
+    ui->lineEdit_mid->setValidator(new QIntValidator(0,99999999, this));
+    ui->lineEdit_scin_admin->setValidator(new QIntValidator(0,99999999, this));
 }
 
 gest_emp_auth::~gest_emp_auth()
@@ -54,7 +65,7 @@ void gest_emp_auth::on_pushButton_ajouteremploye_clicked()
     QString prenom=ui->lineEdit_prenom->text();
     QString email=ui->lineEdit_email->text();
     QString salaire=ui->lineEdit_salaire->text();
-    QString datedn=ui->lineEdit_date->text();
+    QString datedn=ui->dateEdit->text();
     QString num=ui->lineEdit_numero->text();
     Employe E(cin,nom,prenom,email,salaire,datedn,num);
     bool test=E.ajouter();
@@ -72,15 +83,16 @@ void gest_emp_auth::on_pushButton_ajouteremploye_clicked()
 
 void gest_emp_auth::on_pushButton_supremploye_clicked()
 {
-    Employe E1;E1.setcin(ui->lineEdit_supcin->text().toInt());
+    QMessageBox msgBox;
+    Employe E1;
+    E1.setcin(ui->lineEdit_supcin->text().toInt());
     bool test=E1.supprimer(E1.getcin());
     if (test){
+        ui->lineEdit_supcin->clear();
         ui->tab_employe->setModel(E.afficher());
-        QMessageBox::information(nullptr, QObject::tr("Supprimer un employe"),
-                    QObject::tr("employe supprimé.\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
-
-    }
+            msgBox.setText("Employe supprimé");
+            msgBox.exec();
+           }
 }
 
 void gest_emp_auth::on_pushButton_modifieremploye_clicked()
@@ -92,7 +104,7 @@ void gest_emp_auth::on_pushButton_modifieremploye_clicked()
         E.setprenom(ui->lineEdit_mprenom->text());
         E.setemail(ui->lineEdit_memail->text());
         E.setsalaire(ui->lineEdit_msalaire->text());
-        E.setdatedn(ui->lineEdit_mdate->text());
+        E.setdatedn(ui->dateEdit_m->text());
         E.setnum(ui->lineEdit_mnumero->text());
 
         bool test=E.modifier(E.getcin());
@@ -124,8 +136,8 @@ void gest_emp_auth::on_recherchercin_clicked()
            ui->lineEdit_memail->setText(query.value(3).toString());
            ui->lineEdit_msalaire->setText(query.value(4).toString());
            ui->lineEdit_mnumero->setText(query.value(5).toString());
-           ui->lineEdit_mdate->setText(query.value(6).toString());
-
+           QDate datedn = QDate::fromString(query.value(6).toString(),"dd/MM/yyyy");
+           ui->dateEdit_m->setDate(datedn);
         }
        }
 }
@@ -136,13 +148,13 @@ void gest_emp_auth::on_pushButton_tricin_clicked()
 
     QSqlQueryModel *model = new QSqlQueryModel();
              model->setQuery("SELECT * FROM EMPLOYE order by cin ASC");
-             model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
-             model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
-             model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
-             model->setHeaderData(3, Qt::Horizontal, QObject::tr("email"));
-             model->setHeaderData(4, Qt::Horizontal, QObject::tr("salaire"));
-             model->setHeaderData(5, Qt::Horizontal, QObject::tr("numero"));
-             model->setHeaderData(6, Qt::Horizontal, QObject::tr("datedn"));
+             model->setHeaderData(0, Qt::Horizontal, QObject::tr("Cin"));
+             model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
+             model->setHeaderData(2, Qt::Horizontal, QObject::tr("Prenom"));
+             model->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
+             model->setHeaderData(4, Qt::Horizontal, QObject::tr("Salaire"));
+             model->setHeaderData(5, Qt::Horizontal, QObject::tr("Numero"));
+             model->setHeaderData(6, Qt::Horizontal, QObject::tr("Date de naissance"));
              ui->tab_employe->setModel(model);
              ui->tab_employe->show();
              msgBox.setText("Tri avec succès.");
@@ -155,13 +167,13 @@ void gest_emp_auth::on_pushButton_trinom_clicked()
 
     QSqlQueryModel *model = new QSqlQueryModel();
              model->setQuery("SELECT * FROM EMPLOYE order by nom ASC");
-             model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
-             model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
-             model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
-             model->setHeaderData(3, Qt::Horizontal, QObject::tr("email"));
-             model->setHeaderData(4, Qt::Horizontal, QObject::tr("salaire"));
-             model->setHeaderData(5, Qt::Horizontal, QObject::tr("numero"));
-             model->setHeaderData(6, Qt::Horizontal, QObject::tr("datedn"));
+             model->setHeaderData(0, Qt::Horizontal, QObject::tr("Cin"));
+             model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
+             model->setHeaderData(2, Qt::Horizontal, QObject::tr("Prenom"));
+             model->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
+             model->setHeaderData(4, Qt::Horizontal, QObject::tr("Salaire"));
+             model->setHeaderData(5, Qt::Horizontal, QObject::tr("Numero"));
+             model->setHeaderData(6, Qt::Horizontal, QObject::tr("Date de naissance"));
              ui->tab_employe->setModel(model);
              ui->tab_employe->show();
              msgBox.setText("Tri avec succès.");
@@ -174,13 +186,13 @@ void gest_emp_auth::on_pushButton_trisalaire_clicked()
 
     QSqlQueryModel *model = new QSqlQueryModel();
              model->setQuery("SELECT * FROM EMPLOYE order by salaire ASC");
-             model->setHeaderData(0, Qt::Horizontal, QObject::tr("cin"));
-             model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
-             model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
-             model->setHeaderData(3, Qt::Horizontal, QObject::tr("email"));
-             model->setHeaderData(4, Qt::Horizontal, QObject::tr("salaire"));
-             model->setHeaderData(5, Qt::Horizontal, QObject::tr("numero"));
-             model->setHeaderData(6, Qt::Horizontal, QObject::tr("datedn"));
+             model->setHeaderData(0, Qt::Horizontal, QObject::tr("Cin"));
+             model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
+             model->setHeaderData(2, Qt::Horizontal, QObject::tr("Prenom"));
+             model->setHeaderData(3, Qt::Horizontal, QObject::tr("Email"));
+             model->setHeaderData(4, Qt::Horizontal, QObject::tr("Salaire"));
+             model->setHeaderData(5, Qt::Horizontal, QObject::tr("Numero"));
+             model->setHeaderData(6, Qt::Horizontal, QObject::tr("Date de naissance"));
              ui->tab_employe->setModel(model);
              ui->tab_employe->show();
              msgBox.setText("Tri avec succès.");
@@ -191,7 +203,7 @@ void gest_emp_auth::on_pushButton_trisalaire_clicked()
 void gest_emp_auth::on_pushButton_rechercheremp_clicked()
 {
     Employe E;
-        if (ui->comboBox->currentText()=="cin")
+        if (ui->comboBox->currentText()=="Rechercher par CIN")
         {
             int cin=ui->lineEdit_emprech->text().toInt();
             if (E.recherche_cin(cin))
@@ -199,7 +211,7 @@ void gest_emp_auth::on_pushButton_rechercheremp_clicked()
                 ui->tab_employe->setModel(E.afficher_cin(cin));
             }
         }
-        else if(ui->comboBox->currentText()=="nom")
+        else if(ui->comboBox->currentText()=="Rechercher par nom")
         {
             QString nom=ui->lineEdit_emprech->text();
             if (E.recherche_nom(nom))
@@ -208,7 +220,7 @@ void gest_emp_auth::on_pushButton_rechercheremp_clicked()
             }
 
         }
-        else
+        else if(ui->comboBox->currentText()=="Rechercher par salaire")
         {
             QString salaire=ui->lineEdit_emprech->text();
             if(E.recherche_salaire(salaire))
@@ -296,9 +308,9 @@ void gest_emp_auth::on_trinomprofil_clicked()
 
     QSqlQueryModel *model = new QSqlQueryModel();
              model->setQuery("SELECT * FROM PROFIL order by nom_utilisateur ASC");
-             model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
-             model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom_utilisateur"));
-             model->setHeaderData(2, Qt::Horizontal, QObject::tr("mot_de_passe"));
+             model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+             model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom d'utilisateur"));
+             model->setHeaderData(2, Qt::Horizontal, QObject::tr("mot de passe"));
              ui->tableView_profil->setModel(model);
              ui->tableView_profil->show();
              msgBox.setText("Tri avec succès.");
@@ -311,9 +323,9 @@ void gest_emp_auth::on_triidprofil_clicked()
 
     QSqlQueryModel *model = new QSqlQueryModel();
              model->setQuery("SELECT * FROM PROFIL order by id ASC");
-             model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
-             model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom_utilisateur"));
-             model->setHeaderData(2, Qt::Horizontal, QObject::tr("mot_de_passe"));
+             model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+             model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom d'utilisateur"));
+             model->setHeaderData(2, Qt::Horizontal, QObject::tr("mot de passe"));
              ui->tableView_profil->setModel(model);
              ui->tableView_profil->show();
              msgBox.setText("Tri avec succès.");
@@ -461,7 +473,7 @@ void gest_emp_auth::on_pushButton_pdfprofil_clicked()
 void gest_emp_auth::on_pushButton_rechprofil_clicked()
 {
             authentification A;
-            if (ui->comboBox_2->currentText()=="id")
+            if (ui->comboBox_2->currentText()=="Rechercher par ID")
             {
                 int id=ui->lineEdit_profilrech->text().toInt();
                 if (A.recherche_id(id))
@@ -469,7 +481,7 @@ void gest_emp_auth::on_pushButton_rechprofil_clicked()
                     ui->tableView_profil->setModel(A.afficher_id(id));
                 }
             }
-            else if(ui->comboBox_2->currentText()=="nomutilisateur")
+            else if(ui->comboBox_2->currentText()=="Rechercher par nom d'utilisateur")
             {
                 QString nomutilisateur=ui->lineEdit_profilrech->text();
                 if (A.recherche_nom(nomutilisateur))

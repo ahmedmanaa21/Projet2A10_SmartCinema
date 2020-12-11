@@ -53,10 +53,13 @@ bool Employe::ajouter()
     return test;
 }
 bool Employe::supprimer(int cin){
-
     QSqlQuery query;
+    Employe E;
+    bool test=E.recherche_cin(cin);
+    if(test){
     query.prepare(" Delete from employe where cin=:cin");
     query.bindValue(":cin", cin);
+    }
     return query.exec();
 }
 QSqlQueryModel* Employe::afficher()

@@ -11,15 +11,14 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    setWindowTitle("VineWood");
+    setWindowIcon(QIcon(":/logoApp.png"));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-
 
 void MainWindow::on_pushButton_quiter1_clicked()
 {
@@ -28,20 +27,18 @@ void MainWindow::on_pushButton_quiter1_clicked()
 
 void MainWindow::on_pushButton_connecter_clicked()
 {
-    gest_emp_auth G;
-    G.setWindowModality(Qt::ApplicationModal);
-    G.show();
-
+    G = new gest_emp_auth(this);
+    G->show();
 }
 
 void MainWindow::on_pushButton_inscrire_clicked()
 {
-    gest_emp_auth G;
-    G.show();
+    G = new gest_emp_auth(this);
+    G->show();
 }
 
 void MainWindow::on_pushButton_mdpoublie_clicked()
 {
-    gest_emp_auth G;
-    G.show();
+    G = new gest_emp_auth(this);
+    G->show();
 }

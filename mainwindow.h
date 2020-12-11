@@ -7,6 +7,7 @@
 #include <QSqlQueryModel>
 #include <QSqlQuery>
 #include <QMainWindow>
+#include "gest_emp_auth.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,5 +36,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Employe E;
+    gest_emp_auth *G;
 };
 #endif // MAINWINDOW_H
