@@ -23,6 +23,7 @@ public:
     QSqlQueryModel* afficher_nom(QString);
     bool modifier(int);
     bool recherche_id(int);
+    bool recherche_id_mdp(int,QString);
     bool recherche_nom(QString);
     bool supprimer(int);
 private:

@@ -72,7 +72,8 @@ background-image: url(:/background.jpg);</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 255, 255);</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_loginmdp">
@@ -88,7 +89,8 @@ background-image: url(:/background.jpg);</string>
       <enum>Qt::WheelFocus</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 255, 255);</string>
      </property>
      <property name="echoMode">
       <enum>QLineEdit::Password</enum>

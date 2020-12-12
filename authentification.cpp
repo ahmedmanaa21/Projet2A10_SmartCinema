@@ -118,4 +118,22 @@ QSqlQueryModel* authentification::afficher_nom(QString nomutilisateur)
     model->setQuery("SELECT * FROM PROFIL WHERE nom_utilisateur='"+nomutilisateur+"'");
     return model;
 }
+bool authentification::recherche_id_mdp(int id,QString mdp)
+{
+    QMessageBox msgBox;
+    QSqlQuery query;
 
+    query.prepare("SELECT * FROM PROFIL WHERE ID= :id and mot_de_passe= :mot_de_passe");
+    query.bindValue(":id", id);
+    query.bindValue(":mot_de_passe", mdp);
+    if (query.exec() && query.next())
+    {
+            return true;
+    }
+    else
+    {
+        msgBox.setText("Profil n existe pas");
+        msgBox.exec();
+        return false;
+    }
+}
