@@ -63,6 +63,18 @@ private slots:
 
     void on_pushButton_quitter_clicked();
 
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_retouradmin_clicked();
+
+    void on_pushButton_quitter_2_clicked();
+
+    void on_pushButton_quitter_3_clicked();
+
+    void on_pushButton_quitter_4_clicked();
+
 private:
     Ui::gest_emp_auth *ui;
     Employe E;

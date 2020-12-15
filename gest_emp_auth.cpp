@@ -500,3 +500,33 @@ void gest_emp_auth::on_pushButton_quitter_clicked()
 {
     close();
 }
+
+void gest_emp_auth::on_pushButton_5_clicked()
+{
+    close();
+}
+
+void gest_emp_auth::on_pushButton_clicked()
+{
+    close();
+}
+
+void gest_emp_auth::on_pushButton_retouradmin_clicked()
+{
+    close();
+}
+
+void gest_emp_auth::on_pushButton_quitter_2_clicked()
+{
+    close();
+}
+
+void gest_emp_auth::on_pushButton_quitter_3_clicked()
+{
+    close();
+}
+
+void gest_emp_auth::on_pushButton_quitter_4_clicked()
+{
+    close();
+}
