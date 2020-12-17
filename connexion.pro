@@ -17,18 +17,21 @@ SOURCES += \
     employe.cpp \
     gest_emp_auth.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    menu.cpp
 
 HEADERS += \
     authentification.h \
     connection.h \
     employe.h \
     gest_emp_auth.h \
-    mainwindow.h
+    mainwindow.h \
+    menu.h
 
 FORMS += \
     gest_emp_auth.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    menu.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
