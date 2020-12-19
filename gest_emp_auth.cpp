@@ -33,6 +33,7 @@
 #include <QIntValidator>
 #include <QRegExp>
 
+
 gest_emp_auth::gest_emp_auth(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::gest_emp_auth)
