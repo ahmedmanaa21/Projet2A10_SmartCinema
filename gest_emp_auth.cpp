@@ -31,6 +31,7 @@
 #include<QVariant>
 #include <QValidator>
 #include <QIntValidator>
+#include <QRegExp>
 
 gest_emp_auth::gest_emp_auth(QWidget *parent) :
     QWidget(parent),
@@ -69,6 +70,7 @@ void gest_emp_auth::on_pushButton_ajouteremploye_clicked()
     QString num=ui->lineEdit_numero->text();
     Employe E(cin,nom,prenom,email,salaire,datedn,num);
     bool test=E.ajouter();
+    if(email.contains(QRegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))){
     if (test){
         ui->tab_employe->setModel(E.afficher());
             msgBox.setText("Employe ajoute");
@@ -79,6 +81,11 @@ void gest_emp_auth::on_pushButton_ajouteremploye_clicked()
             msgBox.setText("Cin existe deja");
             msgBox.exec();
         }
+    }else
+    {
+        msgBox.setText("adresse email incorrecte");
+        msgBox.exec();
+    }
 }
 
 void gest_emp_auth::on_pushButton_supremploye_clicked()

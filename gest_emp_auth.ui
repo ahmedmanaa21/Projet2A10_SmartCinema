@@ -34,7 +34,7 @@ background-image: url(:/backgroundapp.jpg);</string>
    </property>
    <widget class="QWidget" name="Tab">
     <attribute name="title">
-     <string>Gestion des employé(e)s</string>
+     <string>Gestion des employés</string>
     </attribute>
     <widget class="QTabWidget" name="tabWidget_2">
      <property name="geometry">
