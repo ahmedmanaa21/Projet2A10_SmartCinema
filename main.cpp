@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include "ui_gest_emp_auth.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
