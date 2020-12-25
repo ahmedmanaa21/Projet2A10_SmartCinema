@@ -1,10 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "gest_emp_auth.h"
-#include "ui_gest_emp_auth.h"
 #include "employe.h"
 #include <QMessageBox>
 #include "authentification.h"
+#include "menu.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -32,8 +33,8 @@ void MainWindow::on_pushButton_connecter_clicked()
     A2.setid(ui->lineEdit_loginid->text().toInt());
     A2.setmdp(ui->lineEdit_loginmdp->text());
     if(A2.recherche_id_mdp(A2.getid(),A2.getmdp())){
-    G = new gest_emp_auth(this);
-    G->show();
+    M = new Menu(this);
+    M->show();
 }
 }
 

@@ -8,6 +8,7 @@
 #include <QSqlQuery>
 #include <QMainWindow>
 #include "gest_emp_auth.h"
+#include "menu.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,5 +38,6 @@ private:
     Ui::MainWindow *ui;
     Employe E;
     gest_emp_auth *G;
+    Menu *M;
 };
 #endif // MAINWINDOW_H

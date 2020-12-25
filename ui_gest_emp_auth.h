@@ -147,6 +147,7 @@ public:
         tabWidget_2 = new QTabWidget(Tab);
         tabWidget_2->setObjectName(QStringLiteral("tabWidget_2"));
         tabWidget_2->setGeometry(QRect(0, 0, 721, 361));
+        tabWidget_2->setAutoFillBackground(false);
         tabWidget_2->setStyleSheet(QLatin1String("background-color: rgb(181, 197, 255);\n"
 ""));
         tab_3 = new QWidget();
@@ -1234,7 +1235,7 @@ public:
         pushButton_supremploye->setText(QApplication::translate("gest_emp_auth", "Supprimer", Q_NULLPTR));
         pushButton_quitter_4->setText(QApplication::translate("gest_emp_auth", "Quitter", Q_NULLPTR));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_6), QApplication::translate("gest_emp_auth", "Supprimer employ\303\251", Q_NULLPTR));
-        tabWidget->setTabText(tabWidget->indexOf(Tab), QApplication::translate("gest_emp_auth", "Gestion des employ\303\251(e)s", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(Tab), QApplication::translate("gest_emp_auth", "Gestion des employes", Q_NULLPTR));
         ajout_auth->setTitle(QString());
         label_9->setText(QApplication::translate("gest_emp_auth", "Nom d'utilisateur :", Q_NULLPTR));
         label_11->setText(QApplication::translate("gest_emp_auth", "Mot de passe :", Q_NULLPTR));

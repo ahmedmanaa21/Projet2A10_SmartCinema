@@ -30,8 +30,8 @@ public:
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
     QPushButton *pushButton_5;
+    QPushButton *pushButton_4;
 
     void setupUi(QWidget *Menu)
     {
@@ -160,10 +160,10 @@ public:
 "	border-color: rgb(255, 255, 0);\n"
 "	color:rgb(255, 255, 255);\n"
 "}"));
-        pushButton_4 = new QPushButton(groupBox);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(20, 220, 201, 23));
-        pushButton_4->setStyleSheet(QLatin1String("QPushButton\n"
+        pushButton_5 = new QPushButton(groupBox);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setGeometry(QRect(20, 260, 201, 23));
+        pushButton_5->setStyleSheet(QLatin1String("QPushButton\n"
 "{\n"
 "	background-color: rgb(255, 255, 255);\n"
 "	border-style:solid;\n"
@@ -188,10 +188,10 @@ public:
 "	border-color: rgb(255, 255, 0);\n"
 "	color:rgb(255, 255, 255);\n"
 "}"));
-        pushButton_5 = new QPushButton(groupBox);
-        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        pushButton_5->setGeometry(QRect(20, 260, 201, 23));
-        pushButton_5->setStyleSheet(QLatin1String("QPushButton\n"
+        pushButton_4 = new QPushButton(groupBox);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setGeometry(QRect(20, 220, 201, 23));
+        pushButton_4->setStyleSheet(QLatin1String("QPushButton\n"
 "{\n"
 "	background-color: rgb(255, 255, 255);\n"
 "	border-style:solid;\n"
@@ -230,8 +230,8 @@ public:
         pushButton->setText(QApplication::translate("Menu", "Gestion Employ\303\251s/Profils", Q_NULLPTR));
         pushButton_2->setText(QApplication::translate("Menu", "Gestion Clients", Q_NULLPTR));
         pushButton_3->setText(QApplication::translate("Menu", "Gestion Stocks", Q_NULLPTR));
-        pushButton_4->setText(QApplication::translate("Menu", "Gestion Programmes", Q_NULLPTR));
         pushButton_5->setText(QApplication::translate("Menu", "Gestion Tickets/Reservations", Q_NULLPTR));
+        pushButton_4->setText(QApplication::translate("Menu", "Gestion Films/Programmes", Q_NULLPTR));
     } // retranslateUi
 
 };

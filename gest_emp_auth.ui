@@ -34,7 +34,7 @@ background-image: url(:/backgroundapp.jpg);</string>
    </property>
    <widget class="QWidget" name="Tab">
     <attribute name="title">
-     <string>Gestion des employés</string>
+     <string>Gestion des employes</string>
     </attribute>
     <widget class="QTabWidget" name="tabWidget_2">
      <property name="geometry">
@@ -44,6 +44,9 @@ background-image: url(:/backgroundapp.jpg);</string>
        <width>721</width>
        <height>361</height>
       </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(181, 197, 255);

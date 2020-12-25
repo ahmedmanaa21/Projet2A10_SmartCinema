@@ -4,7 +4,7 @@
 #include "connection.h"
 #include <QDebug>
 #include <QMessageBox>
-#include "ui_gest_emp_auth.h"
+#include "menu.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,9 +13,11 @@ int main(int argc, char *argv[])
     bool test=c.createConnection();
     MainWindow w;
     gest_emp_auth G;
+    Menu M;
     if(test)
     {w.show();
     //G.show();
+    //M.show();
         QMessageBox::information(nullptr, QObject::tr("database is open"),
                     QObject::tr("connection successful.\n"
                                 "Click Cancel to exit."), QMessageBox::Cancel);

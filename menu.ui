@@ -207,46 +207,6 @@ QPushButton:focus
      <string>Gestion Stocks</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>220</y>
-      <width>201</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton
-{
-	background-color: rgb(255, 255, 255);
-	border-style:solid;
-	border-radius:7px;
-	border-width:2px;
-border-color: rgb(255, 255, 255);
-color: rgb(255, 255, 255);
-	font-size:16px;
-font-family:Calibri;
-}
-
-QPushButton:hover
-{
-	background-color: #00000000;
-	border-color: rgb(255, 255, 0);
-	/*color:rgb(30, 227, 0);*/
-}
-
-QPushButton:focus
-{
-	background-color:  rgb(30, 227, 0);
-	border-color: rgb(255, 255, 0);
-	color:rgb(255, 255, 255);
-}</string>
-    </property>
-    <property name="text">
-     <string>Gestion Programmes</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
@@ -285,6 +245,46 @@ QPushButton:focus
     </property>
     <property name="text">
      <string>Gestion Tickets/Reservations</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>220</y>
+      <width>201</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton
+{
+	background-color: rgb(255, 255, 255);
+	border-style:solid;
+	border-radius:7px;
+	border-width:2px;
+border-color: rgb(255, 255, 255);
+color: rgb(255, 255, 255);
+	font-size:16px;
+font-family:Calibri;
+}
+
+QPushButton:hover
+{
+	background-color: #00000000;
+	border-color: rgb(255, 255, 0);
+	/*color:rgb(30, 227, 0);*/
+}
+
+QPushButton:focus
+{
+	background-color:  rgb(30, 227, 0);
+	border-color: rgb(255, 255, 0);
+	color:rgb(255, 255, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>Gestion Films/Programmes</string>
     </property>
    </widget>
   </widget>

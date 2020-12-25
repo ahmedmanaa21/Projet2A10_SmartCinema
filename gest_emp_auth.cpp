@@ -4,7 +4,6 @@
 #include <QMessageBox>
 #include "authentification.h"
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include <iostream>
 #include <QMessageBox>
 #include  <QDebug>
@@ -32,7 +31,7 @@
 #include <QValidator>
 #include <QIntValidator>
 #include <QRegExp>
-
+#include "menu.h"
 
 gest_emp_auth::gest_emp_auth(QWidget *parent) :
     QWidget(parent),
